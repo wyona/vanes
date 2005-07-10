@@ -16,4 +16,8 @@
     <fail unless="cocoon.webapp.dir.exists" message="Cocoon webapp does not exist. No such directory: ${cocoon.webapp.dir}"/>
   </target>
 
+  <target name="build" description="Build webapp" depends="init">
+    <echo>${publets}</echo>
+  </target>
+
 </project>
