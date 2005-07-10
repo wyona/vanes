@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<project name="vanes" default="usage">
+
+  <target name="usage" description="How to see all the targets">
+    <echo>USAGE: ant -projecthelp</echo>
+    <echo>NOTE: Read the README.txt</echo>
+  </target>
+
+  <target name="init" description="Init all parameters and other settings">
+    <property file="local.build.properties"/>
+    <property file="build.properties"/>
+
+    <property name="cocoon.webapp.dir" value="${cocoon.source.dir}/build/webapp"/>
+    <available file="${cocoon.webapp.dir}" type="dir" property="cocoon.webapp.dir.exists"/>
+    <fail unless="cocoon.webapp.dir.exists" message="Cocoon webapp does not exist. No such directory: ${cocoon.webapp.dir}"/>
+  </target>
+
+</project>
