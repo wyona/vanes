@@ -14,10 +14,21 @@
     <property name="cocoon.webapp.dir" value="${cocoon.source.dir}/build/webapp"/>
     <available file="${cocoon.webapp.dir}" type="dir" property="cocoon.webapp.dir.exists"/>
     <fail unless="cocoon.webapp.dir.exists" message="Cocoon webapp does not exist. No such directory: ${cocoon.webapp.dir}"/>
+
+
+    <mkdir dir="build/tools/classes"/>
+    <javac srcdir="src/tools/java"
+           destdir="build/tools/classes"
+    />
+    <taskdef name="mcopy" classpath="build/tools/classes" classname="MCopyTask"/>
   </target>
 
   <target name="build" description="Build webapp" depends="init">
-    <echo>${publets}</echo>
+
+    <echo>Copy publets: ${publets}</echo>
+    <mcopy dirs="${publets}" todir="${cocoon.webapp.dir}">
+      <fileset includes="**"/>
+    </mcopy>
   </target>
 
 </project>
